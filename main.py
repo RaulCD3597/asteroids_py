@@ -3,12 +3,14 @@
 import pygame
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from player import Player
 
 
 def main():
     """asteroids main function"""
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     clock = pygame.time.Clock()
     dt = 0
 
@@ -18,6 +20,8 @@ def main():
                 return
 
         screen.fill("black")
+        player.draw(screen)
+        player.update(dt)
         pygame.display.flip()
         # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
